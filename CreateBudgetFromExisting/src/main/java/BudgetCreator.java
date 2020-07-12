@@ -2,12 +2,16 @@ import ExcelUtils.ExcelCellLocation;
 import ExcelUtils.ExcelWorkbook;
 import ExcelUtils.Sheets.ExcelSheet;
 import ExcelUtils.Sheets.SavingsAnalysisSheet;
+import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.xssf.model.StylesTable;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class BudgetCreator {
     private static final String PAYCHECK_SHEET_NAME = "Paycheck Analysis";
@@ -64,23 +68,40 @@ public class BudgetCreator {
         for (int i = 0; i < carryOverCellLocations.size(); i++) {
             ExcelCellLocation locationOfCellToCarryOver = carryOverCellLocations.get(i);
             XSSFCell cellToCarryOver = existingBudgetSheet.getCell(locationOfCellToCarryOver);
+            XSSFCellStyle carryOverCellStyle = cellToCarryOver.getCellStyle();
+            StylesTable carryOverCellStyleSource = cellToCarryOver.getSheet().getWorkbook().getStylesSource();
+            RichTextString carryOverCellComment =
+                    Optional.ofNullable(cellToCarryOver)
+                    .map(XSSFCell::getCellComment)
+                    .map(Comment::getString)
+                            .orElse(null);
 
             if (SAVINGS_SHEET_NAME.equals(newBudgetSheet.getSheetName())) {
                 // Overwrite cell to overwrite contents in new budget using carry over cell contents of the old budget.
                 // This is the only sheet in which the cells to carry over are not the same as the cells to overwrite.
                 ExcelCellLocation locationOfCellToOverwrite = ((SavingsAnalysisSheet)newBudgetSheet).getCellToOverwrite(i);
                 double carryOverCellValue = cellToCarryOver.getNumericCellValue();
-                XSSFCellStyle carryOverCellStyle = cellToCarryOver.getCellStyle();
-                newBudgetSheet.setCellContents(locationOfCellToOverwrite, carryOverCellValue, carryOverCellStyle);
+                newBudgetSheet.setCellContents(
+                        locationOfCellToOverwrite,
+                        carryOverCellValue,
+                        carryOverCellStyle,
+                        carryOverCellStyleSource,
+                        carryOverCellComment
+                );
             } else {
                 // Overwrite carry over cell contents of the new budget using carry over cell contents of the old budget
-                XSSFCellStyle carryOverCellStyle = cellToCarryOver.getCellStyle();
                 if (locationOfCellToCarryOver.getValueType() == ExcelCellLocation.VALUE_TYPE.STRING) {
                     String carryOverCellValue = cellToCarryOver.getStringCellValue();
-                    newBudgetSheet.setCellContents(locationOfCellToCarryOver, carryOverCellValue, carryOverCellStyle);
+                    newBudgetSheet.setCellContents(locationOfCellToCarryOver, carryOverCellValue, carryOverCellStyle, carryOverCellStyleSource, carryOverCellComment);
                 } else {
                     double carryOverCellValue = cellToCarryOver.getNumericCellValue();
-                    newBudgetSheet.setCellContents(locationOfCellToCarryOver, carryOverCellValue, carryOverCellStyle);
+                    newBudgetSheet.setCellContents(
+                            locationOfCellToCarryOver,
+                            carryOverCellValue,
+                            carryOverCellStyle,
+                            carryOverCellStyleSource,
+                            carryOverCellComment
+                    );
                 }
             }
         }
