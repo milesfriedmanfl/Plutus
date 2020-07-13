@@ -1,13 +1,17 @@
 ﻿
 ## I. About
 
-This project is a simple set of excel template files designed to make easier the process of creating and maintaining a budget, tracking expenses, and logically partitioning savings. The following document will describe how best to use these files. These templates are better suited to those with a predictable or fixed income, however may be used by those with a variable income with some tweaking to the methodologies described below.
+This project is provides a set of excel template files designed to make easier the process of creating and maintaining a budget, tracking expenses, and logically partitioning savings. The following document will describe how best to use these files. These templates are better suited to those with a predictable or fixed income, however may be used by those with a variable income with some tweaking to the methodologies described below.
 
 ## II. Basics
 
 Each template file contains three sheets: a paycheck analysis, budget analysis, and savings analysis. The contents of these sheets should be edited with varying frequencies, which will be expanded on later. Each sheet breaks down its analysis by month, and as such the budget files should be edited on a monthly basis at minimum. Aside from the initial setup of a budget sheet, this upkeep should be very quick and easy. As a general rule of thumb, all cells that expect input are colored light blue, but this will be expanded on in further sections. Finally, the reason for the varying template files is so that a budget can be easily created regardless of the current month. The only difference between the templates is that all monthly inputs before the month specified in the file name have been replaced with dashes. (null values) 
 
-## III. Paycheck Analysis
+## III. Creating A Budget Manually Or For The First Time
+
+To begin start by making a copy of your desired template file, which will be used to build your budget from, then open the file in Excel.
+
+### Paycheck Analysis
 
 The first sheet is the Paycheck Analysis page, which should for the most part mirror your paycheck. This will probably only need to be edited once per year, at the time you create your budget from this template, since every month your gross pay should be the same. The exceptions to this rule would be if you receive a pay rate increase/decrease, or switch jobs. Any non-recurring or random additional income may also be tracked, but this is accounted for separately on the Budget Analysis sheet.
 
@@ -19,7 +23,7 @@ Next locate the “Variable Rates” subsection under Benefits and input the per
 
 With that done you should be finished editing this sheet, likely for the rest of your days using this budget, and won’t have to worry about any upkeep here unless you get a pay rate increase/decrease or switch jobs.
 
-## IV. Budget Analysis
+### Budget Analysis
 
 Probably the most useful and important of the three sheets, the Budget Analysis is what is used to create your budget, predict and track your spending, and determine how much money you should be saving. This should be edited roughly once per month, probably at the end of the month, but of course may be adjusted more frequently if needed. In general the cells you’re going to be editing here are those that are highlighted in blue under the “Recurring Values” header, and those highlighted in blue under the “Actual Monthly” values header. 
 
@@ -51,7 +55,7 @@ The “Other Savings” sub section works exactly the same way as the “Restric
 
 The last sub-section on this sheet is the “Spending Money” sub section. This section is useful for planning and tracking how much money you spend on things such as groceries, entertainment, and other variable expenses. By the time you get to this section you should have your various savings and recurring expenses sub sections filled out, which will have updated the “Excess Available Funds” cell for the month, listed below the “Cash Outflows” section. The amount listed in that cell represents the remaining funds that can be used on the various line items in this section. As you fill out expected values the “Excess Available Funds” cell value will update, so as long as that value is at or above 0 by the time you finish, you’ll know that your expected values will likely be safe estimates for money you can spend throughout the month. As an optional way to best utilize the created budget, I like to use a free phone app called *GoodBudget* that allows me to create categories of spending that I can record transactions against. I have a category created for each line item in this sub-section and as I spend throughout the pay period I record my transactions in the app, which subtracts that amount from the budget category. This makes it easy to ensure that I don’t go over budget in my spending money and that I’ll have enough in my checking account to cover the other cash outflows. There are plenty of free phone apps out there that exist for this purpose.
 
-## V. Savings Analysis
+### Savings Analysis
 
 The final sheet of your budget is the Savings Analysis page. This section is useful for tracking specific amounts you have saved for certain logical partitions or categories of savings, and for tracking spending against your savings.
 
@@ -65,9 +69,39 @@ The “Cash Outflow” section represents any money that you spend from your sav
 
 The final section of this sheet is used to track the amount that you should have in your savings account at the end of a particular month based on the cash inflows/outflows to and from savings specified in the aforementioned sections. If the amount you have in your savings account(s) doesn’t match what is shown on this spreadsheet, chances are you have not transferred the amount that you should have from your checking account for that month. The only inputs here are the start values for each sub-section. If this is the first time using one of these templates you should fill in your current savings account balance for the “Actual Expected Balance” start value cell and then break up that value however you see fit in the logical categories, or even start at 0. If you are creating a new budget and have used these before, carry over the starting values from your previous year’s budget and input them in these cells. This will ensure that the values reflected on this sheet are always up to date, and that you are always aware of how much you have saved for various expected expenses, should the need arise.
 
-## VI. Maintenance
+## IV. Creating A New Budget To From An Existing One
 
-If you’ve gotten this far you will have successfully used one of the templates to create your budget, the hard part is over. From this point forward you will only need to edit your budget once per month. Specifically, you should take the following actions, which should only take about 10 minutes, at the end of each month:
+If you’ve already created a budget using one of these templates in the past, and need to create a new one for the new year or for any other reason, you have two options: 
+
+* You can either create a new budget manually using the steps above, with a couple additional steps at the end.
+
+OR
+
+* You can use one of the provided *CreateFromExisting* executor scripts to take care of this process for you. *(much less effort)*
+
+### Manual Method
+
+To create a new budget manually, simply follow the steps in the aforementioned section. Additionally, you should copy over any relevant cells from your existing budget to your new budget. The cells you may wish to copy over include:
+
+* Any line items in column C of any of the sub-sections on the **Budget Analysis** page of your existing budget to the same cells on the budget of your new template copy.
+
+* Any recurring values for the line items of the sub-section on the **Budget Analysis** page of your existing budget to the same cells on the budget of your new template copy. (if you would like to start from the same budget values)
+
+* The “Expected Account Balances” December values from the **Savings Analysis** page (column S) of the existing budget to the “Expected Account Balances start values (column G). This is so that your new budget is aware of your current savings and logical savings category balances that have been tracked by your existing budget
+
+### Automated Method
+
+*NOTE:* you will need to have the Java runtime environment installed if you want to use this method.
+
+If you would like this process taken care of with less steps invlolved, you can instead opt to use one if the provided scripts made for this purpose. If you are using windows, the file you’re interested in is the *CreateFromExisting.bat* file. If you’re using Linux, the file you’re interested in is the *CreateFromExsisting.sh* file. In either case there are two very simple steps:
+
+* The first step is to open the file relevant to you in your text editor of choice and set the variable values at the very top of the file. Set EXISTING_BUDGET_PATH to the file path of your existing budget, and set NEW_BUDGET_PATH to the path where you would like your new budget to be created, including the name of your new budget. Keep in mind that for Windows users these paths should use double back slashes (\\\\) to separate directories, and for Linux users these paths should use forward slashes (/)
+
+* The second step is simply to save your file, and then run by double clicking. On completion the newly created budget should exist at the path you specified with all of the aforementioned values filled in for you.
+
+## V. Maintaining Your Budget Once Created
+
+If you’ve gotten this far you will have successfully used one of the templates to create your budget, the hard part is over. From this point forward you will only need to edit your budget once per month. Specifically, you should take the following actions, which should be very quick, at the end of each month:
 
 * On the **Budget Analysis** sheet update the actual monthly values for each cash inflow/outflow. Optionally recolor the cells to transparent to make it easier on your eyes next time you view your budget. If you have any “Excess Available Expenses” leftover at the end of these updates you will know you have some extra money to allocate towards savings, or spend on whatever you see fit.
 * On the **Savings Analysis** sheet, use the “Actual Transferred In” (if you have two savings accounts like me) or “Total Transferred In” (if one account) monthly cell value to determine how much to transfer from your checking account to savings account(s) and make the transfer.
