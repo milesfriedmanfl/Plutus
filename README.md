@@ -27,6 +27,8 @@ With that done you should be finished editing this sheet, likely for the rest of
 
 ### Budget Analysis
 
+![Image of Budget Analysis](https://github.com/milesfriedmanfl/BudgetTemplates/blob/master/Images/BudgetAnalysis.png)
+
 Probably the most useful and important of the three sheets, the Budget Analysis is what is used to create your budget, predict and track your spending, and determine how much money you should be saving. This should be edited roughly once per month, probably at the end of the month, but of course may be adjusted more frequently if needed. In general the cells you’re going to be editing here are those that are highlighted in blue under the “Recurring Values” header, and those highlighted in blue under the “Actual Monthly” values header. 
 
 The cells under “Recurring Values” header are used to calculate expected monthly values under the “Actual Monthly Values” header. These cells will likely be edited very infrequently; only in the case that your expected recurring inflow/outflow value has changed from what it was previously. The cells under the “Actual Monthly Values” on the other hand, should be edited once per month as part of your monthly upkeep with the **actual** inflow/outflow value for that month. Personally, I’ve found it helpful to get into the habit of changing these cell’s colors to transparent after editing, as it helps me easily spot the current month the next time I view my budget, and more importantly remind me to update the cell values if I haven’t already.  
@@ -58,6 +60,8 @@ The “Other Savings” sub section works exactly the same way as the “Restric
 The last sub-section on this sheet is the “Spending Money” sub section. This section is useful for planning and tracking how much money you spend on things such as groceries, entertainment, and other variable expenses. By the time you get to this section you should have your various savings and recurring expenses sub sections filled out, which will have updated the “Excess Available Funds” cell for the month, listed below the “Cash Outflows” section. The amount listed in that cell represents the remaining funds that can be used on the various line items in this section. As you fill out expected values the “Excess Available Funds” cell value will update, so as long as that value is at or above 0 by the time you finish, you’ll know that your expected values will likely be safe estimates for money you can spend throughout the month. As an optional way to best utilize the created budget, I like to use a free phone app called *GoodBudget* that allows me to create categories of spending that I can record transactions against. I have a category created for each line item in this sub-section and as I spend throughout the pay period I record my transactions in the app, which subtracts that amount from the budget category. This makes it easy to ensure that I don’t go over budget in my spending money and that I’ll have enough in my checking account to cover the other cash outflows. There are plenty of free phone apps out there that exist for this purpose.
 
 ### Savings Analysis
+
+![Image of Savings Analysis](https://github.com/milesfriedmanfl/BudgetTemplates/blob/master/Images/SavingsAnalysis.png)
 
 The final sheet of your budget is the Savings Analysis page. This section is useful for tracking specific amounts you have saved for certain logical partitions or categories of savings, and for tracking spending against your savings.
 
@@ -98,6 +102,8 @@ To create a new budget manually, simply follow the steps in the aforementioned s
 If you would like this process taken care of with less steps invlolved, you can instead opt to use one if the provided scripts made for this purpose. If you are using windows, the file you’re interested in is the *CreateFromExisting.bat* file. If you’re using Linux, the file you’re interested in is the *CreateFromExsisting.sh* file. In either case there are two very simple steps:
 
 * The first step is to open the file relevant to you in your text editor of choice and set the variable values at the very top of the file. Set EXISTING_BUDGET_PATH to the file path of your existing budget, and set NEW_BUDGET_PATH to the path where you would like your new budget to be created, including the name of your new budget. Keep in mind that for Windows users these paths should use double back slashes (\\\\) to separate directories, and for Linux users these paths should use forward slashes (/)
+
+![Image of script vars to edit](https://github.com/milesfriedmanfl/BudgetTemplates/blob/master/Images/ScriptVarsToEdit.png)
 
 * The second step is simply to save your file, and then run by double clicking. On completion the newly created budget should exist at the path you specified with all of the aforementioned values filled in for you.
 
