@@ -13,7 +13,7 @@ To begin start by making a copy of your desired template file, which will be use
 
 ### Paycheck Analysis
 
-![Image of Paycheck Analysis](https://github.com/milesfriedmanfl/BudgetTemplates/Images/PaycheckAnalysis.png)
+![Image of Paycheck Analysis](https://github.com/milesfriedmanfl/BudgetTemplates/blob/master/Images/PaycheckAnalysis.png)
 
 The first sheet is the Paycheck Analysis page, which should for the most part mirror your paycheck. This will probably only need to be edited once per year, at the time you create your budget from this template, since every month your gross pay should be the same. The exceptions to this rule would be if you receive a pay rate increase/decrease, or switch jobs. Any non-recurring or random additional income may also be tracked, but this is accounted for separately on the Budget Analysis sheet.
 
