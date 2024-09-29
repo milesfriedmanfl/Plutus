@@ -1,7 +1,7 @@
 ﻿
 ## I. About
 
-This project is provides a set of excel template files designed to make easier the process of creating and maintaining a budget, tracking expenses, and logically partitioning savings. The following document will describe how best to use these files. These templates are better suited to those with a predictable or fixed income, however may be used by those with a variable income with some tweaking to the methodologies described below.
+This project is two things: a set of excel template files designed to make easier the process of creating and maintaining a budget, tracking expenses, and logically partitioning savings, and a java program that will automate the process of creating a new yearly budget excel shee that rolls over the previous values and formulas as starting values for the next year. The following document will describe how best to use these files. These templates are better suited to those with a predictable or fixed income, however may be used by those with a variable income with some tweaking to the methodologies described below.
 
 ## II. Basics
 
